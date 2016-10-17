@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+	//$.ajax({
+//	  type: 'GET',
+//	  url: 'http://demo9072126.mockable.io/blick_exam',
+//	  async: false,
+//	  beforeSend: function (xhr) {
+//		if (xhr && xhr.overrideMimeType) {
+//		  xhr.overrideMimeType('application/json;charset=utf-8');
+//		}
+//	  },
+//	  dataType: 'json',
+//	  success: function (data) {
+//		alert('ok')
+//	  }
+//	});
+function ajax_get(url, callback) {
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log('responseText:' + xmlhttp.responseText);
+            try {
+                var data = JSON.parse(xmlhttp.responseText);
+            } catch(err) {
+                console.log(err.message + " in " + xmlhttp.responseText);
+                return;
+            }
+            callback(data);
+        }
+    };
+ 
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+ 
+ajax_get('http://demo9072126.mockable.io/blick_exam', function(data) {
+    document.getElementById("title").innerHTML = data["artist"];
+ 
+   
+});
+</script>
+</head>
+<head>
+</head>
+<div class="container">
+	<div class="row">
+    	<div class="col-md-12">
+            <div>
+                <h5>Artista:</h5>
+                <p id="title"></p>
+                <h5>Album:</h5>
+                <p></p>
+                <h5>Numero de canciones:</h5>
+                <p></p>
+                <a href="#" target="_blank"><h5>Disponible en Itunes</h5></a>
+                <h5>Duración:</h5>
+                <p></p>
+                
+            </div>
+            <table class="table table-bordered">
+            	<thead>
+                	<tr>
+                    	<th>#</th>
+                        <th>Titulo</th>
+                        <th>Album</th>
+                        <th>Artisya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                    	<th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                    	<th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+            	<a href="#" target="_blank" class="btn btn-default">Comprar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+</footer>
+<body>
+</body>
+</html>
